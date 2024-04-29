@@ -31,6 +31,29 @@ var msg = flag.String("m", "", "message body.")
 func main() {
 	flag.Parse()
 
+	// get value from environment variable
+	if *from == "" {
+		*from = os.Getenv("from")
+	}
+	if *server == "" {
+		*server = os.Getenv("server")
+	}
+	if *user == "" {
+		*user = os.Getenv("user")
+	}
+	if *pass == "" {
+		*pass = os.Getenv("pass")
+	}
+
+	fmt.Printf("== DEBUG ============================= \n")
+	fmt.Printf("server: '%s'\n", *server)
+	fmt.Printf("user: '%s'\n", *user)
+	fmt.Printf("from: '%s'\n", *from)
+	fmt.Printf("receiver: '%s'\n", *receiver)
+	fmt.Printf("subject: '%s'\n", *subject)
+	fmt.Printf("msg: '%s'\n", *msg)
+	fmt.Printf("====================================== \n")
+
 	if *v || *ver {
 		fmt.Printf("%s %s", appName, appVersion)
 		os.Exit(0)
